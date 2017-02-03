@@ -1,0 +1,9 @@
+SqlConnection conn = new SqlConnection(WebConfigurationManager.ConnectionStrings["testConnectionString"].ConnectionString);
+SqlDataAdapter ad = new SqlDataAdapter("select * from test where id=" + GridView1.SelectedDataKey.Values[0].ToString() + " and title='" + GridView1.SelectedDataKey.Values[1].ToString()+"'", conn);
+DataSet ds = new DataSet();
+try {
+ad.Fill(ds, "test");
+GridView2.DataSource = ds;
+GridView2.DataBind();      }
+catch (Exception ex)        {
+Response.Write("<hr /> Exception Error Message:" + ex.ToString());}
